@@ -125,9 +125,9 @@ Based on MEA Passport Seva and VFS Global guidelines (2024).
 - File size: 10-1000 KB
 
 ### Digital Upload (for online applications)
-- Dimensions: 630x810 pixels
+- Dimensions: 630x810 pixels (exact)
 - Face height: 50-85% of photo
-- File size: 20-100 KB (strict limit)
+- File size: 10-250 KB (Passport Seva limit)
 
 ## Validation Checks
 

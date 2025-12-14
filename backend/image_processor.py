@@ -434,7 +434,28 @@ class ImageProcessor:
         spec: PhotoSpec,
         target_format: str = "JPEG"
     ) -> bytes:
-        """Optimize image to meet file size requirements."""
+        """Optimize image to meet file size requirements.
+
+        For Passport Seva compatibility:
+        - Ensures RGB mode (no RGBA/transparency)
+        - Removes ICC profiles that may cause issues
+        - Uses baseline JPEG (not progressive)
+        - Targets file size within spec limits
+        """
+        # Ensure image is in RGB mode (no alpha channel)
+        if image.mode in ('RGBA', 'LA', 'P'):
+            # Create white background and paste image
+            background = Image.new('RGB', image.size, (255, 255, 255))
+            if image.mode == 'P':
+                image = image.convert('RGBA')
+            if image.mode in ('RGBA', 'LA'):
+                background.paste(image, mask=image.split()[-1])
+                image = background
+            else:
+                image = image.convert('RGB')
+        elif image.mode != 'RGB':
+            image = image.convert('RGB')
+
         buffer = io.BytesIO()
 
         # Start with high quality and reduce if needed
@@ -445,7 +466,15 @@ class ImageProcessor:
             buffer.truncate()
 
             if target_format.upper() == "JPEG":
-                image.save(buffer, format="JPEG", quality=quality, optimize=True)
+                # Save as baseline JPEG without ICC profile for maximum compatibility
+                image.save(
+                    buffer,
+                    format="JPEG",
+                    quality=quality,
+                    optimize=True,
+                    progressive=False,  # Baseline JPEG for compatibility
+                    subsampling=0,  # 4:4:4 for best quality
+                )
             else:
                 image.save(buffer, format=target_format, optimize=True)
 
