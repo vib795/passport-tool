@@ -1,6 +1,6 @@
 # Indian Passport Photo Tool
 
-A free, open-source tool for resizing and formatting photos for Indian passport applications through VFS Global and Indian embassies in the USA.
+A free, open-source tool for resizing and formatting photos for Indian passport applications through VFS Global.
 
 ## Features
 
