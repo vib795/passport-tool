@@ -13,7 +13,7 @@ A free, open-source tool for resizing and formatting photos for Indian passport 
 - **Automatic background removal** and white background replacement
 - **Brightness and contrast adjustment**
 - **Face detection** for auto-cropping suggestions
-- **Validation** against official MEA/VFS requirements
+- **Photo validation** based on Indian passport requirements (see below)
 
 ## Privacy
 
@@ -112,19 +112,43 @@ Or run:
 
 ## Photo Specifications
 
+Based on MEA Passport Seva and VFS Global guidelines (2024).
+
 ### Print Square (51x51mm / 2x2 inch)
-- Dimensions: 600x600 pixels
-- DPI: 300
-- File size: 10-300 KB
+- Dimensions: 600x600 pixels at 300 DPI
+- Face height: 40-75% of photo
+- File size: 10-1000 KB
 
 ### Print Standard (35x45mm / 3.5x4.5cm)
-- Dimensions: 413x531 pixels
-- DPI: 300
-- File size: 10-300 KB
+- Dimensions: 413x531 pixels at 300 DPI
+- Face height: 50-85% of photo
+- File size: 10-1000 KB
 
-### Digital Upload
+### Digital Upload (for online applications)
 - Dimensions: 630x810 pixels
-- File size: 10-300 KB
+- Face height: 50-85% of photo
+- File size: 20-100 KB (strict limit)
+
+## Validation Checks
+
+The tool validates your photo against Indian passport requirements:
+
+| Check | Description |
+|-------|-------------|
+| Face detection | Ensures a clear frontal face is detected |
+| Face size | Verifies face occupies correct percentage of frame |
+| Eye position | Checks eyes are at proper height in the photo |
+| Head tilt | Detects if head is tilted (should be straight) |
+| Head margin | Ensures proper space above head |
+| Face centering | Checks face is horizontally centered |
+| Background color | Validates white/off-white background |
+| Shadow detection | Warns about uneven lighting or shadows |
+| Image sharpness | Detects blurry photos |
+| Brightness | Checks for proper exposure (not too dark/bright) |
+| Contrast | Ensures face features are clearly visible |
+| Resolution | Verifies minimum image resolution |
+
+**Note:** This tool provides automated validation to help catch common issues, but it cannot verify all requirements (e.g., neutral expression, appropriate attire). Always review the final photo yourself before submission.
 
 ## Usage
 
