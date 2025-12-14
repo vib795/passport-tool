@@ -14,7 +14,14 @@ A free, open-source tool for resizing and formatting photos for Indian passport 
 - **Brightness and contrast adjustment**
 - **Face detection** for auto-cropping suggestions
 - **Validation** against official MEA/VFS requirements
-- **Privacy-focused** - photos are processed locally, not stored on any server
+
+## Privacy
+
+This tool requires a backend server for image processing (background removal, face detection). Here's how your photos are handled:
+
+- **Self-hosted (recommended)**: When you run this locally or on your own server, photos never leave your machine/infrastructure. They are processed in memory and never written to disk.
+
+- **Public hosting**: If someone hosts this publicly, photos are uploaded to their server for processing. While the code doesn't store images to disk (they're processed in memory only), you are trusting the server operator. For sensitive documents like passport photos, we recommend self-hosting.
 
 ## Tech Stack
 
